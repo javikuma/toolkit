@@ -1,0 +1,4 @@
+/testdata/uploads/*.png
+/testdata/uploads/*.jpg
+/testdata/uploads/*.jpeg
+/testdata/uploads/*.gif
