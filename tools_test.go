@@ -3,6 +3,8 @@ package toolkit
 // execute tests: `go test .` or `o test -v .`
 import (
 	"bytes"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"image"
 	"image/png"
@@ -303,4 +305,31 @@ func TestTools_WriteJSON(t *testing.T) {
 		t.Errorf("failed to write JSON: %v", err)
 	}
 
+}
+
+func TestTools_ErrorJSON(t *testing.T) {
+	var testTools Tools
+
+	code := http.StatusServiceUnavailable
+
+	resRecorder := httptest.NewRecorder()
+	err := testTools.ErrorJSON(resRecorder, errors.New("some error"), code)
+	if err != nil {
+		t.Error(err)
+	}
+
+	var payload JSONResponse
+	decoder := json.NewDecoder(resRecorder.Body)
+	err = decoder.Decode(&payload)
+	if err != nil {
+		t.Error("received error when decoding JSON", err)
+	}
+
+	if !payload.Error {
+		t.Error("error set to false in JSON, and it should be true")
+	}
+
+	if resRecorder.Code != code {
+		t.Errorf("wrong status code returned; expected %d, but got %d", code, resRecorder.Code)
+	}
 }
