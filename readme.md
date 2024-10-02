@@ -1,8 +1,8 @@
-# Toolkit
+# Toolkit 🧰
 
 A Go module with commonly used tools for various operations.
 
-## Installation
+## Installation 💻
 
 To install the toolkit, use the following command:
 
@@ -10,7 +10,7 @@ To install the toolkit, use the following command:
 go get -u github.com/javikuma/toolkit
 ```
 
-## Usage
+## Usage 🎲
 
 Import the package:
 ```go
@@ -22,7 +22,7 @@ Create a new instance of the Tools struct:
 t := &toolkit.Tools{}
 ```
 
-## Available Tools
+## Available Tools 🎯
 
 ### 1. Random String Generation
 
@@ -94,16 +94,16 @@ Posts JSON data to a remote URL and returns the response.
 response, statusCode, err := t.PushJSONToRemote(uri string, data interface{}, client ...*http.Client) (*http.Response, int, error)
 ```
 
-## Customization
+## Customization 🧮
 
 The `Tools` struct allows customization of certain parameters:
 
-* `MaxFileSize`: Maximum allowed file size for uploads (default: 1GB)
-* `AllowedFileTypes`: Slice of allowed file MIME types for uploads
-* `MaxJSONSize`: Maximum allowed JSON size (default: 1MB)
-* `AllowUnknownFields`: Whether to allow unknown fields in JSON parsing
+* `MaxFileSize`: Maximum allowed file size for uploads. **_Type:_** int | **_e.g._** 1024 * 1024 | **_default:_** 1GB
+* `AllowedFileTypes`: Slice of allowed file MIME types for uploads. **_Type:_** []string | **_e.g._** []string{"image/jpeg", "image/png", "image/gif"} | **_default:_** all types
+* `MaxJSONSize`: Maximum allowed JSON size. **_Type:_** int | **_e.g._** 1024 * 1024 | **_default:_** 1MB
+* `AllowUnknownFields`: Whether to allow unknown fields in JSON parsing. **_Type:_** bool | **_e.g._** true | **_default:_** false
 
-## Types
+## Types 🚧
 
 ### UploadedFile
 
